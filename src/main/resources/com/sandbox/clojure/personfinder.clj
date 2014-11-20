@@ -1,6 +1,6 @@
 (ns com.sandbox.clojure.personfinder)
 
-(defn sort-by-age-and-return
+(defn sort-by-age-and-get-name-of
   [position]
   (fn [group]
     (->
@@ -10,8 +10,8 @@
 
 (defn youngest
   [group]
-  ((sort-by-age-and-return first) group))
+  ((sort-by-age-and-get-name-of first) group))
 
 (defn oldest
   [group]
-  ((sort-by-age-and-return last) group))
+  ((sort-by-age-and-get-name-of last) group))

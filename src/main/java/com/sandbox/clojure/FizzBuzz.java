@@ -1,6 +1,5 @@
 package com.sandbox.clojure;
 
-import clojure.java.api.Clojure;
 import clojure.lang.IFn;
 
 import static clojure.java.api.Clojure.read;

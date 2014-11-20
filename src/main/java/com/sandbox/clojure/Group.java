@@ -14,6 +14,7 @@ public class Group {
 
 	private static final IFn REQUIRE = var("clojure.core", "require");
 	private static final IFn FROM_JAVA = var(JAVA_DATA_NAMESPACE, "from-java");
+	private static final IFn TO_JAVA = var(JAVA_DATA_NAMESPACE, "to-java");
 
 	private static final IFn OLDEST = var(PERSON_FINDER_NAMESPACE, "oldest");
 	private static final IFn YOUNGEST = var(PERSON_FINDER_NAMESPACE, "youngest");
@@ -29,15 +30,16 @@ public class Group {
 		group.add(person);
 	}
 
-	public String findYoungest() {
-		return (String) YOUNGEST.invoke(withClojureRepresentationOf(group));
+	public Person findYoungest() {
+		return find(YOUNGEST);
 	}
 
-	public String findOldest() {
-		return (String) OLDEST.invoke(withClojureRepresentationOf(group));
+	public Person findOldest() {
+		return find(OLDEST);
 	}
 
-	private Object withClojureRepresentationOf(Object object) {
-		return FROM_JAVA.invoke(object);
+	private Person find(IFn function) {
+		Object person = function.invoke(FROM_JAVA.invoke(group));
+		return (Person) TO_JAVA.invoke(Person.class, person);
 	}
 }

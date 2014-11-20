@@ -7,22 +7,26 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class GroupTest {
+	private static final Person JON = new Person("Jon", 28);
+	private static final Person NICK = new Person("Nick", 31);
+	private static final Person NAS = new Person("Nas", 42);
+
 	private Group group = new Group();
 
 	@Before public void
 	populateGroup() {
-		group.add(new Person("Nas", 42));
-		group.add(new Person("Jon", 28));
-		group.add(new Person("Nick", 31));
+		group.add(NAS);
+		group.add(JON);
+		group.add(NICK);
 	}
 
 	@Test public void
 	findsYoungestPersonInGroup() {
-		assertThat(group.findYoungest(), is("Jon"));
+		assertThat(group.findYoungest(), is(JON));
 	}
 
 	@Test public void
 	findsOldestPersonInGroup() {
-		assertThat(group.findOldest(), is("Nas"));
+		assertThat(group.findOldest(), is(NAS));
 	}
 }

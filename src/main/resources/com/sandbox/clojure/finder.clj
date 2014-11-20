@@ -1,4 +1,4 @@
-(ns com.sandbox.clojure.personfinder)
+(ns com.sandbox.clojure.finder)
 
 (defn sort-by-age-and-get-name-of
   [position]
